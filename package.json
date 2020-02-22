@@ -7,7 +7,7 @@
     "explore": "gridsome explore"
   },
   "dependencies": {
-    "@gridsome/source-airtable": "^0.1.4",
+    "airtable": "^0.8.1",
     "gridsome": "^0.7.0"
   }
 }
