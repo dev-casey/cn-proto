@@ -5,10 +5,10 @@ module.exports = {
   siteName: 'cn-proto',
   plugins: [
     {
-      use: '~/src/sources/products',
+      use: '~/src/data/foodcoop/products',
       options: {
         apiKey: 'keyrBK5AQ6XDpRwPw',
-        base: 'appJZsfZmYaICRUig'
+        base: 'appq9EsevSMkgmQTw'
       }
     }
   ]
