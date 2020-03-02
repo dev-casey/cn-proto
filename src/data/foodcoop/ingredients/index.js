@@ -8,9 +8,9 @@ module.exports = function (api, options) {
 
     const collection = addCollection({
       camelCasedFieldNames: true,
-      typeName: 'Product',
+      typeName: 'Ingredient',
       templates: {
-        Product: [{ path: options.path }]
+        Ingredient: [{ path: options.path }]
       }
     })
 
@@ -21,7 +21,7 @@ module.exports = function (api, options) {
         const item = record._rawJson;
 
         collection.addNode({
-          id: item.productID,
+          id: item.ingredientID,
           ...item.fields
         });
       });
