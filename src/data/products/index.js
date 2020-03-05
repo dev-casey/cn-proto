@@ -3,10 +3,9 @@ const Airtable = require('airtable');
 module.exports = function (api, options) {
   const base = new Airtable({apiKey: options.apiKey}).base(options.base);
 
-  api.loadSource(async actions => {
-    const addCollection = actions.addCollection || actions.addContentType
+  api.loadSource(async ({ addCollection, store }) => {
 
-    const collection = addCollection({
+    const products = addCollection({
       camelCasedFieldNames: true,
       typeName: 'Product',
       templates: {
@@ -20,12 +19,12 @@ module.exports = function (api, options) {
       records.forEach((record) => {
         const item = record._rawJson;
 
-        collection.addNode({
-          id: item.productID,
+        products.addNode({
+          id: item.id,
           ...item.fields
         });
       });
       fetchNextPage();
     });
-  });
-};
+  })
+}

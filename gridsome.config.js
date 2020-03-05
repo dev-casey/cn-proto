@@ -13,7 +13,7 @@ module.exports = {
   siteUrl: 'https://collectivenourishment.org',
   plugins: [
     {
-      use: '~/src/data/foodcoop',
+      use: '~/src/data/products',
       options: {
         apiKey: 'keyrBK5AQ6XDpRwPw',
         base: 'appW55rTNEuyr5bpP'
@@ -21,28 +21,10 @@ module.exports = {
     }
   ],
   templates: {
-    Group: [
-      {
-        path: '/g/:id/',
-        component: './src/templates/Group.vue'
-      }
-    ],
-    Ingredient: [
-      {
-        path: '/i/:id/',
-        component: './src/templates/Ingredient.vue'
-      }
-    ],
     Product: [
       {
         path: '/p/:id/',
         component: './src/templates/Product.vue'
-      }
-    ],
-    Tag: [
-      {
-        path: '/t/:id/',
-        component: './src/templates/Tag.vue'
       }
     ]
   },

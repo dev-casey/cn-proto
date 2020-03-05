@@ -52,6 +52,6 @@ export default {
 
 <style lang="css" scoped>
 .bg {
-  background-image: url('../assets/imgs/img.png');
+  background-image: url('../../assets/imgs/img.png');
 }
 </style>

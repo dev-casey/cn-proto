@@ -13,8 +13,8 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="css">
 .bg-1 {
-  background-image: url('../assets/imgs/img-1.png');
+  background-image: url('../../assets/imgs/img-1.png');
 }
 </style>

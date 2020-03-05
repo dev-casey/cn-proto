@@ -1,7 +1,9 @@
 <template lang="html">
-  <div class="">
-    <g-link to="/">Index</g-link>
-  </div>
+  <Coop>
+    <div class="p-16">
+      <h1>Order</h1>
+    </div>
+  </Coop>
 </template>
 
 <script>

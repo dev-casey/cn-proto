@@ -13,70 +13,60 @@
       </div>
     </section>
     <section class="px-8 pt-8">
-      <h1 class="text-2xl font-semibold pb-8">Store Options</h1>
+      <h1 class="text-2xl font-semibold pb-8">Product List</h1>
       <div class="grid grid-cols-3 gap-8">
-        <CategoryPreview
-          v-for="category in categories"
-          :key="category.name"
-          :category="category">
-        </CategoryPreview>
+        <ProductPreview
+          v-for="edge in $page.products.edges"
+          :key="edge.node.id"
+          :product="edge.node">
+        </ProductPreview>
       </div>
     </section>
-    <section class="px-8 pt-8">
-      <h1 class="text-2xl font-semibold pb-8">Tags</h1>
-      <div class="grid grid-cols-3 gap-8">
-        <TagPreview
-          v-for="edge in $page.tags.edges"
-          :key="edge.node.id"
-          :tag="edge.node">
-        </TagPreview>
-      </div>
+    <section>
+      <Pager :info="$page.products.pageInfo" class="page-nav mb-16" />
     </section>
   </Layout>
 </template>
 
 <script>
-import CategoryPreview from '../components/CategoryPreview.vue'
-import TagPreview from '../components/TagPreview.vue'
+import { Pager } from 'gridsome'
+import ProductPreview from '../components/Previews/Product.vue'
 
 export default {
   name: 'Index',
   components: {
-    CategoryPreview,
-    TagPreview
+    Pager,
+    ProductPreview
   },
   data() {
     return {
-      categories: [
-        {
-          name: 'Food Products',
-          path: '/food-products',
-          component: './src/pages/Products.vue'
-        },
-        {
-          name: 'Local Harvest',
-          path: '/local-harvest',
-          component: './src/pages/Harvest.vue'
-        },
-        {
-          name: 'Wholefoods',
-          path: '/wholefoods',
-          component: './src/pages/Wholefoods.vue'
-        }
-      ]
     }
   }
 }
 </script>
 
 <page-query>
-query Tags {
-  tags: allTag {
+query Products($page: Int) {
+  products: allProduct(sortBy: "productName", order: ASC, perPage: 18, page: $page) @paginate {
+    pageInfo {
+      totalPages
+      currentPage
+    }
     edges {
       node {
         id
-        title
         path
+        name: productName
+        source
+        item
+        form
+        categories
+        pricePerWeight
+        organic
+        earthGrown
+        glutenFree
+        fairTrade
+        superfood
       }
     }
   }

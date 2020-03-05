@@ -1,34 +1,9 @@
 const Airtable = require('airtable');
-// const { GraphQLSchema } = require('gridsome/graphql');
-//
-// function FoodCoopPlugin (api, options) {
-//   const base = new Airtable({
-//     apiKey: options.apiKey
-//   }).base(options.base);
-//
-//   api.addSchema(({ addSchema, graphql }) => {
-//     addSchema(new graphql.GraphQLSchema({
-//       query: new graphql.GraphQLObjectType({
-//         name: 'Posts'
-//       })
-//     }))
-//   })
-//
-// }
 
-// FoodCoopPlugin.defaultOptions = () => ({
-//   apiKey: 'keyrBK5AQ6XDpRwPw',
-//   base: 'appW55rTNEuyr5bpP'
-// })
-//
-// module.exports = FoodCoopPlugin
-
-module.exports = function (api, options) {
+function hmmmPlugin (api, options) {
   const base = new Airtable({apiKey: options.apiKey}).base(options.base);
 
   api.loadSource(async ({ addCollection, store }) => {
-
-    const categories = addCollection('Category')
 
     const groups = addCollection({
       camelCasedFieldNames: true,
@@ -52,22 +27,6 @@ module.exports = function (api, options) {
       }
     })
 
-    const category = categories.addNode([
-      {
-        id: 'a',
-        title: 'a'
-      },
-      {
-        id: 'b',
-        title: 'b'
-      },
-      {
-        id: 'c',
-        title: 'c '
-      }
-    ]
-  )
-
     await base('Groups')
     .select()
     .eachPage((records, fetchNextPage) => {
@@ -75,9 +34,8 @@ module.exports = function (api, options) {
         const item = record._rawJson;
 
         groups.addNode({
-          id: item.groupID,
-          ...item.fields,
-          category: store.createReference(category)
+          id: item.id,
+          ...item.fields
         });
       });
       fetchNextPage();
@@ -90,7 +48,7 @@ module.exports = function (api, options) {
         const item = record._rawJson;
 
         ingredients.addNode({
-          id: item.ingredientID,
+          id: item.id,
           ...item.fields
         });
       });
@@ -104,7 +62,7 @@ module.exports = function (api, options) {
         const item = record._rawJson;
 
         products.addNode({
-          id: item.productID,
+          id: item.id,
           ...item.fields
         });
       });
@@ -113,3 +71,10 @@ module.exports = function (api, options) {
 
   });
 };
+
+DataPlugin.defaultOptions = () => {
+  apiKey: 'keyrBK5AQ6XDpRwPw',
+  base: 'appW55rTNEuyr5bpP'
+}
+
+module.exports = DataPlugin

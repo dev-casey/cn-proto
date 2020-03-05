@@ -28,4 +28,45 @@ module.exports = function (api, options) {
       fetchNextPage();
     });
   });
+
 };
+
+// --------------------------------------- Extra code
+const posts = addCollection('Post')
+const tags = addCollection('Tag')
+
+const tag = tags.addNode(
+  { id: '1', title: 'Tag 1' },
+  { id: '2', title: 'Tag 2' })
+
+const post = posts.addNode({
+  id: '1',
+  title: 'Post 2',
+  tag: store.createReference(tag)
+})
+
+const categories = addCollection('Category')
+
+// const { GraphQLSchema } = require('gridsome/graphql');
+//
+// function FoodCoopPlugin (api, options) {
+//   const base = new Airtable({
+//     apiKey: options.apiKey
+//   }).base(options.base);
+//
+//   api.addSchema(({ addSchema, graphql }) => {
+//     addSchema(new graphql.GraphQLSchema({
+//       query: new graphql.GraphQLObjectType({
+//         name: 'Posts'
+//       })
+//     }))
+//   })
+//
+// }
+
+// FoodCoopPlugin.defaultOptions = () => ({
+//   apiKey: 'keyrBK5AQ6XDpRwPw',
+//   base: 'appW55rTNEuyr5bpP'
+// })
+//
+// module.exports = FoodCoopPlugin
