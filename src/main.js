@@ -4,13 +4,11 @@ require('~/main.css')
 
 import Default from '~/layouts/Default.vue'
 import Agent from '~/layouts/Agent.vue'
-import Coop from '~/layouts/Coop.vue'
-import Harvest from '~/layouts/Harvest.vue'
+import Products from '~/layouts/Products.vue'
 
 export default function (Vue, { router, head, isClient }) {
   // Set default layout as a global component
   Vue.component('Layout', Default)
   Vue.component('Agent', Agent)
-  Vue.component('Coop', Coop)
-  Vue.component('Harvest', Harvest)
+  Vue.component('Products', Products)
 }

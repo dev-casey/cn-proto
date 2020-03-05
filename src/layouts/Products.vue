@@ -1,5 +1,5 @@
 <template>
-  <div class="coop">
+  <div class="products">
     <header class="header">
       <Navbar></Navbar>
     </header>
@@ -8,7 +8,7 @@
 </template>
 
 <script type="text/javascript">
-import Navbar from '~/components/Navs/TopNav/Coop'
+import Navbar from '~/components/Navs/TopNav/Products'
 export default {
   components: {
     Navbar
