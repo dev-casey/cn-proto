@@ -13,6 +13,14 @@ module.exports = {
   siteUrl: 'https://collectivenourishment.org',
   plugins: [
     {
+      use: 'gridsome-plugin-netlify-cms',
+      options: {
+        configPath: 'static/admin/config.yml',
+        publicPath: '/admin',
+        enableIdentityWidget: true
+      }
+    },
+    {
       use: '~/src/data/products',
       options: {
         apiKey: 'keyrBK5AQ6XDpRwPw',
