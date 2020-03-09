@@ -15,18 +15,10 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Rating (scale of 1-5)", name: "rating", widget: "number"}
-<<<<<<< HEAD
       - {label: "Body", name: "body", widget: "markdown"}
-  - name: "product"
-    label: "Product"
-    folder: "src/_items/products"
-=======
-      - {label: "Body", name: "body", widget: "markdown"}
-
   - name: "item"
     label: "Items"
     folder: "src/data/items"
->>>>>>> dev
     create: true
     slug: "{{slug}}"
     fields:
