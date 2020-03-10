@@ -8,7 +8,9 @@
   },
   "dependencies": {
     "@gridsome/cli": "^0.3.1",
+    "@gridsome/source-filesystem": "^0.6.2",
     "@gridsome/transformer-csv": "^0.2.2",
+    "@gridsome/transformer-remark": "^0.5.0",
     "airtable": "^0.8.1",
     "gridsome": "^0.7.0",
     "gridsome-plugin-netlify-cms": "^1.0.9",

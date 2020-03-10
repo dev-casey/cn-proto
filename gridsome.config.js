@@ -11,16 +11,38 @@ const postcssPlugins = [
 module.exports = {
   siteName: 'Co-Nourish',
   siteUrl: 'https://collectivenourishment.org',
+  transformers: {
+    remark: {
+      externalLinksTarget: '_blank',
+      externalLinksRel: ['nofollow', 'noopener', 'noreferrer'],
+      anchorClassName: 'icon icon-link',
+      plugins: []
+    }
+  },
+
   plugins: [
     {
+    // Filesystem
+      // Content: MD Posts
+      use: '@gridsome/source-filesystem',
+      options: {
+        path: 'content/posts/**/*.md',
+        typeName: 'Post',
+        remark: {
+          plugins: []
+        }
+      }
+    },
+    {
+      // NetlifyCMS
       use: 'gridsome-plugin-netlify-cms',
       options: {
-        configPath: 'static/admin/config.yml',
         publicPath: '/admin',
         enableIdentityWidget: true
       }
     },
     {
+      // Airtable
       use: '~/src/data/products',
       options: {
         apiKey: 'keyrBK5AQ6XDpRwPw',
@@ -29,6 +51,12 @@ module.exports = {
     }
   ],
   templates: {
+    Post: [
+      {
+        path: '/:title',
+        component: './src/templates/Post.vue'
+      }
+    ],
     Product: [
       {
         path: '/p/:id/',
